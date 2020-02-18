@@ -1,0 +1,7 @@
+{
+  "name": "memo-app",
+  "private": true,
+  "dependencies": {
+    "bootstrap-icons": "^1.0.0-alpha2"
+  }
+}

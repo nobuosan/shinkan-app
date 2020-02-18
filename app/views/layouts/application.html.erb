@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>CLUB INTRODUCE APP</title>
+      <%= csrf_meta_tags %>
+      <%= csp_meta_tag %>
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <div class="navbar navbar-expand-md navbar-light sticky-top">
+    	<div class="container-fluid">
+    		<a class="navbar-brand" href="/">新歓まとめサイト</a>
+    		<button class="navbar-toggler" type ="button" data-toggle ="collapse" data-target="#navbarResponsive">
+    			<span class="navbar-toggler-icon"></span>
+    		</button>
+    		<div class="collapse navbar-collapse" id ="navbarResponsive">
+    			<ul class="navbar-nav ml-auto">
+                <% @categories.each do |category|%>
+                  <li class="nav-item"><a href="/categories/<%=category.id%>" class="nav-link"><%=category.name%></a></li>
+                <% end%>
+          </ul>
+    		</div>
+    	</div>
+    </div>
+    
+    <div class="container">
+      <%= render 'shared/header' %>
+      <%= yield %>
+    </div>
+  </body>
+  
+
+
+  <!--- Footer -->
+  <footer>
+  	<div>
+  		<div class="row text-center">
+  			<div class="col-md-6">
+  				<%= image_tag("HP_picture.png")%>
+  				<hr class="light">
+  				<p>団体名：make one</p>
+  				<p>since：November/2019</p>
+  				<p>連絡先：youth.tube.kagoshima@gmail.com</p>
+  			</div>
+  			<div class="col-md-6">
+  				<hr class="light">
+  				<h5>Our vision</h5>
+  				<hr class="light">
+  				<p>私たちのビジョンは<br>鹿児島の若者の0→1を実現することです。</p>
+  			</div>
+  			<div class="col-12 footer-bottom">
+  				<hr class="light-100">
+  				<h5>&copy; make one</h5>
+  			</div>
+  		</div>
+  	</div>
+  </footer>
+</html>
+
+
+

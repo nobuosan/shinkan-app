@@ -1,0 +1,76 @@
+<%= render 'shared/flash_messages' %>
+
+<!--- Image Slider -->
+<div id="slides" class="carousel slide" data-ride="carousel">
+	<ul class="carousel-indicators">
+		<li data-target="#slides" data-slide-to ="0" class ="active"></li>
+		<li data-target="#slides" data-slide-to ="1"></li>
+		<li data-target="#slides" data-slide-to ="2"></li>
+	</ul>
+	<div class="carousel-inner">
+		<div class="carousel-item active">
+		    <%= image_tag("background.png", :id => "icon" ,class:"carousel-image")%>
+			<div class="carousel-caption">
+				<h3 class="display-2">鹿児島大学<br>新歓まとめサイト</h3>
+				<h5> 2020年の新歓まとめサイトです</h5>
+				<a class="btn btn-success btn-lg" a href = "/memos/index" role="button" >新歓情報を見る</a>
+				<a class="btn btn-primary btn-lg" a href = "/new" role="button">新歓情報を追加</a>
+			</div>
+		</div>
+		<div class="carousel-item">
+			<%= image_tag("background2.png", :id => "icon",class:"carousel-image")%>
+			<div class="carousel-caption">
+				<h3 class="display-2">鹿児島大学<br>新歓まとめサイト</h3>
+				<h5> 2020年の新歓まとめサイトです</h5>
+				<a class="btn btn-success btn-lg" a href = "/memos/index" role="button" >新歓情報を見る</a>
+				<a class="btn btn-primary btn-lg" a href = "/new" role="button">新歓情報を追加</a>
+				
+			</div>
+		</div>
+		<div class="carousel-item">
+			<%= image_tag("background3.png", :id => "icon",class:"carousel-image")%>
+			<div class="carousel-caption">
+				<h3 class="display-2">鹿児島大学<br>新歓まとめサイト</h3>
+				<h5> 2020年の新歓まとめサイトです</h5>
+				<a class="btn btn-success btn-lg" a href = "/memos/index" role="button" >新歓情報を見る</a>
+				<a class="btn btn-primary btn-lg" a href = "/new" role="button">新歓情報を追加</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--- Welcome Section -->
+<div class="padding">
+	<div class="row welcome text-center">
+		<div class="col-12">
+			<h1 class="display-4">広告枠</h1>
+			<hr>
+			<div class="col-12">
+				<p class="lead">企業情報を表示することができます。</p>
+				<p>for example</p>
+				<p>A web hosoting service allows individuals and organaizations
+					to make their website accessible via the World Wide Web.</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<br>
+<div class="youtube2">
+	<iframe width=100% height=auto src="https://www.youtube.com/embed/cP64kJ12xE8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<br>
+  <!--- Connect -->
+<div class="padding">
+	<div class="row text-center padding">
+		<div class="col-12">
+			<h2>Connect</h2>
+			<div class="col-12 social padding">
+				<a href="https://twitter.com/make_one2019"><i class="fab fa-twitter"></i></a>
+				<a href="https://mail.google.com/mail/?view=cm&to=hoge_toyouth.tube.kagoshima@gmail.com"><i class="fab fa-google-plus-g"></i></a>
+				<a href="https://www.instagram.com/make_one_01/"><i class="fab fa-instagram"></i></a>
+				<a href="https://www.youtube.com/channel/UCvKqqRkT_14HudyVbCDRfgQ"><i class="fab fa-youtube"></i></a>
+			</div>
+		</div>
+	</div>
+</div>

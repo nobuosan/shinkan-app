@@ -1,0 +1,106 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+@import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+// ログイン画面
+
+.container-login {
+  @extend .container-fluid;
+  max-width: 576px;
+  padding: 2rem;
+}
+
+// 「ログインしました」などのフラッシュ用スタイル
+
+.alert-notice {
+  @extend .alert-info;
+}
+
+.alert-alert {
+  @extend .alert-danger;
+}
+
+
+
+.buttons{
+    text-align: right;
+}
+
+
+html,body{
+  height:100%;
+  width:100%;
+  font-family:'Poppins',sans-serif;
+  color:#222;
+}
+.navbar{
+  padding: .8rem;
+  background-color:#008080;
+}
+.navbar-bav li{
+  padding-right:20px ;
+}
+.nav-link{
+  font-size:1.1em !important;
+}
+.navbar-brand{
+  font-weight:700;
+  text-decoration:none;
+  color:white !important;
+}
+.nav-link{
+  color:white !important;
+}
+.navbar-toggler{
+  border-color: #000000;
+  background-color:#ffffff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+footer{
+  background-color:#008080;
+  color:#d5d5d5;
+  padding-top: 2rem;
+}
+hr.light{
+  border-top:1px solid #d5d5d5;
+  width:75%;
+  margin-top: .8rem;
+  margin-bottom:1rem;
+ }
+footer a{
+  color: #d5d5d5;
+}
+hr.light-100{
+  border-top:1px solid #d5d5d5;
+  width:100%;
+  margin-top: .8rem;
+  margin-bottom:1rem;
+}

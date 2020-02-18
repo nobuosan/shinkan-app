@@ -1,0 +1,6 @@
+Category.find_or_create_by(name:"活動")
+Category.find_or_create_by(name:"お店（ただ飲み）")
+Category.find_or_create_by(name:"お店（自腹飲み）")
+Category.find_or_create_by(name:"BBQ")
+Category.find_or_create_by(name:"遊び系")
+Category.find_or_create_by(name:"ドライブ")

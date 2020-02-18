@@ -1,0 +1,28 @@
+<h1>カテゴリー別ページ</h1>
+
+<h2><%=@category.name%></h2>
+
+<% if @memos.count >= 1 %>
+    <div class="row">
+        <%@memos.each do |memo|%>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header bg-info ">
+                    <h4 class="card-title"><%=memo.title%></h4>
+                    <div class ="buttons">
+                        <a href ="/memos/<%=memo.id%>" data-method ="delete"><span class ="fa fa-trash text-white"></span></a> 
+                        <a href ="/memos/<%=memo.id%>/edit"> <span class ="fa fa-edit text-white"></span></a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><%=memo.body%></p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+    <% end %>
+    </div>
+<% else%>
+    <p>新歓情報がありません。新しく新歓情報を追加しますか？</p>
+    <a href ="/new">新歓情報を追加する。（新入生は不可）</a>
+<%end%>
