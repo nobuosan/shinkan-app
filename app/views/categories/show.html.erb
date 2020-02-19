@@ -1,4 +1,4 @@
-<h1>カテゴリー別ページ</h1>
+<h1>ジャンル別ページ</h1>
 
 <h2><%=@category.name%></h2>
 
@@ -9,10 +9,13 @@
             <div class="card">
                 <div class="card-header bg-info ">
                     <h4 class="card-title"><%=memo.title%></h4>
-                    <div class ="buttons">
-                        <a href ="/memos/<%=memo.id%>" data-method ="delete"><span class ="fa fa-trash text-white"></span></a> 
-                        <a href ="/memos/<%=memo.id%>/edit"> <span class ="fa fa-edit text-white"></span></a>
-                    </div>
+                    <p><%= memo.user.name%></p>
+                    <% if memo.user.id == current_user.id %>
+                        <div class ="buttons">
+                            <a href ="/memos/<%=memo.id%>" data-method ="delete"><span class ="fa fa-trash text-white"></span></a> 
+                            <a href ="/memos/<%=memo.id%>/edit"> <span class ="fa fa-edit text-white"></span></a>
+                        </div>
+                    <% end %>
                 </div>
                 <div class="card-body">
                     <p class="card-text"><%=memo.body%></p>

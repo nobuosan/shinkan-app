@@ -1,0 +1,70 @@
+<br>
+<h3><%=@user.name%></h3>
+<hr>
+<div class = "col-lg-6">
+    <h3>新歓情報</h3>
+    <a href = "/memos/index">他のサークルの新歓情報を見る</a>
+</div>
+<% if @memos.count >= 1 %>
+    <div class="row">
+        <%@memos.each do |memo|%>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header bg-info ">
+                    <h4 class="card-title"><%=memo.title%></h4>
+                    <p><%= memo.user.name%></p>
+                    <% if memo.user.id == current_user.id %>
+                        <div class ="buttons">
+                            <a href ="/memos/<%=memo.id%>" data-method ="delete"><span class ="fa fa-trash text-white"></span></a> 
+                            <a href ="/memos/<%=memo.id%>/edit"> <span class ="fa fa-edit text-white"></span></a>
+                        </div>
+                    <%end%>
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><%=memo.body%></p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+    <% end %>
+    </div>
+<% else%>
+    <p>新歓情報がありません。新しく新歓情報を追加しますか？</p>
+    <a href ="/new">新歓情報を追加する。（新入生は不可）</a>
+<%end%>
+<hr>
+<h4>サークル情報</h4>
+<hr>
+<table>
+    <thead>
+        <tr>
+            <td></td>
+            <th scope="col">内容</th>
+            <!--<th scope="col">価格(月額)</th>-->
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>サークル名</th>
+            <td data-label="内容" class="txt"><span><%=@user.name%></span></td>
+            <!--<td data-label="価格" class="price">¥3,000</td>-->
+        </tr>
+        <tr>
+            <th>活動内容</th>
+            <td data-label="内容" class="txt">フットサル</td>
+            <!--<td data-label="価格"class="price">¥4,000</td>-->
+        </tr>
+        <tr>
+            <th>規模[人]</th>
+            <td data-label="内容" class="txt">40人</td>
+            <!--<td data-label="価格"class="price">¥10,000</td>-->
+        </tr>
+        <tr>
+            <th>男女比[男:女]</th>
+            <td data-label="内容" class="txt">8:1</td>
+            <!--<td data-label="価格"class="price">¥10,000</td>-->
+        </tr>
+    </tbody>
+</table>   
+<hr>
+<br>

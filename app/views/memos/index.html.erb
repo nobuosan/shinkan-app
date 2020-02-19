@@ -1,4 +1,5 @@
-<h2>ようこそ鹿児島大学新歓まとめサイトへ</h2>
+<hr>
+<h2>新歓一覧</h2>
 
 <hr>
 
@@ -9,16 +10,21 @@
             <div class="card">
                 <div class="card-header bg-info ">
                     <% memo_category_id =memo.category_id%>
+                    <% memo_user_id =memo.user_id%>
+                    <a href ="/users/<%=memo_user_id%>" class ="text-white"><%= memo.user.name%></a><span>  /  </span>
                     <a href ="/categories/<%=memo_category_id%>" class ="text-white"><%= memo.category.name%></a>
-                    <div class ="buttons">
-                        <a href ="/memos/<%=memo.id%>" data-method ="delete"><span class ="fa fa-trash text-white"></span></a> 
-                        <a href ="/memos/<%=memo.id%>/edit"> <span class ="fa fa-edit text-white"></span></a>
-                    </div>
+                    <% if memo.user.id == current_user.id %>
+                        <div class ="buttons">
+                            <a href ="/memos/<%=memo.id%>" data-method ="delete"><span class ="fa fa-trash text-white"></span></a> 
+                            <a href ="/memos/<%=memo.id%>/edit"> <span class ="fa fa-edit text-white"></span></a>
+                        </div>
+                    <%end%>
                 </div>
                 <div class="card-body">
-                    <h4 class="card-title"><%=memo.title%></h4>
-                    <p class="card-text"><%=memo.body%></p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <p class="card-title">イベント名: <%=memo.title%></p>
+                    <p class="card-title">時間: <%=memo.times%></p>
+                    <p class="card-text">内容: <%=memo.body%></p>
+                    <a href="/users/<%=memo_user_id%>" class="btn btn-primary"><%=memo.user.name%>の紹介ページへ</a>
                 </div>
             </div>
         </div>
