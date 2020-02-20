@@ -13,11 +13,13 @@
                     <% memo_user_id =memo.user_id%>
                     <a href ="/users/<%=memo_user_id%>" class ="text-white"><%= memo.user.name%></a><span>  /  </span>
                     <a href ="/categories/<%=memo_category_id%>" class ="text-white"><%= memo.category.name%></a>
-                    <% if memo.user.id == current_user.id %>
-                        <div class ="buttons">
-                            <a href ="/memos/<%=memo.id%>" data-method ="delete"><span class ="fa fa-trash text-white"></span></a> 
-                            <a href ="/memos/<%=memo.id%>/edit"> <span class ="fa fa-edit text-white"></span></a>
-                        </div>
+                    <% if user_signed_in? %>
+                        <% if memo.user.id == current_user.id %>
+                            <div class ="buttons">
+                                <a href ="/memos/<%=memo.id%>" data-method ="delete"><span class ="fa fa-trash text-white"></span></a> 
+                                <a href ="/memos/<%=memo.id%>/edit"> <span class ="fa fa-edit text-white"></span></a>
+                            </div>
+                        <%end%>
                     <%end%>
                 </div>
                 <div class="card-body">

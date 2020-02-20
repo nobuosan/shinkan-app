@@ -1,14 +1,14 @@
 class MemosController < ApplicationController
-
-  
+  # deviseのメソッドで「ログインしていないユーザーをログイン画面に送る」メソッド
+  #indexは除外
+  before_action :authenticate_user!, except: [:index]  
   def index
     #トップページにアクセスされた時のアクション
     @memos = Memo.all
     @categories = Category.all
     @users = User.all
   end
-  # deviseのメソッドで「ログインしていないユーザーをログイン画面に送る」メソッド
-  before_action :authenticate_user!, except: [:index]  
+
   def new
     #新規メモ作成ページ
     @categories = Category.all
