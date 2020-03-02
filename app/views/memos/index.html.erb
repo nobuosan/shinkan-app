@@ -11,8 +11,8 @@
                 <div class="card-header bg-info ">
                     <% memo_category_id =memo.category_id%>
                     <% memo_user_id =memo.user_id%>
-                    <a href ="/users/<%=memo_user_id%>" class ="text-white"><%= memo.user.name%></a><span>  /  </span>
-                    <a href ="/categories/<%=memo_category_id%>" class ="text-white"><%= memo.category.name%></a>
+                    <h5 class="card-title text-white"><%=memo.title%></h5>
+                    <a href ="/users/<%=memo_user_id%>" class ="text-white"><%= memo.user.name%></a><span></span>
                     <% if user_signed_in? %>
                         <% if memo.user.id == current_user.id %>
                             <div class ="buttons">
@@ -23,7 +23,8 @@
                     <%end%>
                 </div>
                 <div class="card-body">
-                    <p class="card-title">イベント名: <%=memo.title%></p>
+                    <p class="card-title">日にち: <%=memo.day%></p>
+                    <a href ="/categories/<%=memo_category_id%>" ><%= memo.category.name%></a>
                     <p class="card-title">時間: <%=memo.times%></p>
                     <p class="card-text">内容: <%=memo.body%></p>
                     <a href="/users/<%=memo_user_id%>" class="btn btn-primary"><%=memo.user.name%>の紹介ページへ</a>
