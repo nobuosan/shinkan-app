@@ -1,41 +1,52 @@
-<hr>
-<h2>新歓一覧</h2>
-
-<hr>
-
-<% if @memos.count >= 1 %>
-    <div class="row">
-        <%@memos.each do |memo|%>
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-header bg-info ">
-                    <% memo_category_id =memo.category_id%>
-                    <% memo_user_id =memo.user_id%>
-                    <h5 class="card-title text-white"><%=memo.title%></h5>
-                    <a href ="/users/<%=memo_user_id%>" class ="text-white"><%= memo.user.name%></a><span></span>
-                    <% if user_signed_in? %>
-                        <% if memo.user.id == current_user.id %>
-                            <div class ="buttons">
-                                <a href ="/memos/<%=memo.id%>" data-method ="delete"><span class ="fa fa-trash text-white"></span></a> 
-                                <a href ="/memos/<%=memo.id%>/edit"> <span class ="fa fa-edit text-white"></span></a>
-                            </div>
+<div class = "container-login">
+    <hr>
+    <h3>新歓一覧</h3>
+    <hr>
+    <div class ="text-right">
+        <small>*開催日が早い順に表示しています</small>
+    </div>
+    <% if @memos.count >= 1 %>
+        <div class="row">
+            <%@memos.each do |memo|%>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header bg-info ">
+                        <% memo_category_id =memo.category_id%>
+                        <% memo_user_id =memo.user_id%>
+                        <h5 class="card-title text-white float-left"><%=memo.title%></h5>
+                        <% if user_signed_in? %>
+                            <% if memo.user.id == current_user.id %>
+                                <div class ="buttons">
+                                    <a href ="/memos/<%=memo.id%>" data-method ="delete"><span class ="fa fa-trash text-white"></span></a> 
+                                    <span class ="text-white"> ... </span>
+                                    <a href ="/memos/<%=memo.id%>/edit"> <span class ="fa fa-edit text-white"></span></a>
+                                </div>
+                            <%end%>
                         <%end%>
-                    <%end%>
-                </div>
-                <div class="card-body">
-                    <p class="card-title">日にち: <%=memo.day%></p>
-                    <a href ="/categories/<%=memo_category_id%>" ><%= memo.category.name%></a>
-                    <p class="card-title">時間: <%=memo.times%></p>
-                    <p class="card-text">内容: <%=memo.body%></p>
-                    <a href="/users/<%=memo_user_id%>" class="btn btn-primary"><%=memo.user.name%>の紹介ページへ</a>
+                    </div>
+                    <div class="card-body ">
+                        <ul>
+                            <li><p class="card-title">サークル: <ins><a href ="/users/<%=memo_user_id%>" ><%= memo.user.name%></a></ins></p></li>
+                            <li><p class="card-title">日にち: <%=memo.day%></p></li>
+                            <li><p class="card-title">カテゴリ: <ins><a href ="/categories/<%=memo_category_id%>" ><%= memo.category.name%></a></ins></p></li>
+                            <li><p class="card-title">時間: <%=memo.times%></p></li>
+                            <li><p class="card-title">内容: <%=memo.body%></p></li> 
+                            <li><p class="card-title">集合場所: <%=memo.place%></p></li> 
+                        </ul>
+                        <hr>
+                        <div class ="text-center">
+                            <a href="/users/<%=memo_user_id%>" class="btn btn-primary"><%=memo.user.name%>のページへ</a>
+                        </div>
+    
+                    </div>
                 </div>
             </div>
+        <% end %>
         </div>
-    <% end %>
-    </div>
-<% else%>
-    <p>新歓情報がありません。新しく新歓情報を追加しますか？</p>
-    <a href ="/new">新歓情報を追加する。（新入生は不可）</a>
-<%end%>
-
-
+    <% else%>
+        <p>新歓情報がありません。新しく新歓情報を追加しますか？</p>
+        <a href ="/new">新歓情報を追加する。（新入生は不可）</a>
+    <%end%>
+    <br>
+    <br>
+</div>

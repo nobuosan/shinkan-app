@@ -19,11 +19,20 @@
     		</button>
     		<div class="collapse navbar-collapse" id ="navbarResponsive">
     			<ul class="navbar-nav ml-auto">
+    			      <div class="dropdown-divider"></div>
+    			      <% if user_signed_in? %>
+    			        <li class="nav-item">
+    			          <a href="/new" class="nav-link">新歓情報を追加</a>
+    			        </li>
+    			      <%else%>
+    			        <a href="/memos/index" class="nav-link">新歓情報を見る</a>
+    			      <% end %>
+                <div class="dropdown-divider"></div>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">ジャンル</a>
                   <div class="dropdown-menu">
                     <% @categories.each do |category|%>
-                      <p> <a href="/categories/<%=category.id%>" class="dropdown-item "><%=category.name%></a></p>
+                      <p> <a href="/categories/<%=category.id%>" class="dropdown-item"><%=category.name%></a></p>
                     <% end%>
                   </div>
                 </li>
@@ -32,13 +41,14 @@
                   <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">アカウント</a>
                   <div class="dropdown-menu">
                     <% if user_signed_in? %>
-                      <%= link_to 'アカウント設定', edit_user_registration_path, class: 'dropdown-item' %>
-                      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
-                      <p><a  href="/users/<%=current_user.id %>">マイページを見る</a></p>
-                      
+                      <p><a href="/users/<%=current_user.id %>" class = "dropdown-item">マイページを見る</a></p>
+                      <p><%= link_to 'マイページを編集', edit_user_registration_path, class: 'dropdown-item' %></p>
+                      <p><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item' %></p>
+                      <p><a href="/new" class="dropdown-item">新歓情報を追加</a></p>
                     <% else %>
                       <%= link_to "新規登録", new_user_registration_path, class: 'dropdown-item' %>
                       <%= link_to "ログイン", new_user_session_path, class: 'dropdown-item' %>
+                      <p><a href="/memos/index" class="dropdown-item">新歓情報を見る</a></p>
                     <% end %>
                   </div>
                 </li>

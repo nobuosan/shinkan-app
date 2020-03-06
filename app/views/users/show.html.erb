@@ -1,119 +1,137 @@
-<br>
-<h3><%=@user.name%></h3>
-<hr>
-<div class = "col-lg-6">
-    <h3>新歓情報</h3>
-    <a href = "/memos/index">他のサークルの新歓情報を見る</a>
-</div>
-<% if @memos.count >= 1 %>
-    <div class="row">
-        <%@memos.each do |memo|%>
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-header bg-info ">
-                    <% memo_category_id =memo.category_id%>
-                    <% memo_user_id =memo.user_id%>
-                    <h5 class="card-title text-white"><%=memo.title%></h5>
-                    <a href ="/users/<%=memo_user_id%>" class ="text-white"><%= memo.user.name%></a><span></span>
-                    <% if user_signed_in? %>
-                        <% if memo.user.id == current_user.id %>
-                            <div class ="buttons">
-                                <a href ="/memos/<%=memo.id%>" data-method ="delete"><span class ="fa fa-trash text-white"></span></a> 
-                                <a href ="/memos/<%=memo.id%>/edit"> <span class ="fa fa-edit text-white"></span></a>
-                            </div>
+<div class = "container-login">
+    <hr>
+    <h3><%=@user.name%></h3>
+    <hr>
+    <div class = "text-right">
+        <small><a href = "/memos/index">他のサークルの新歓情報を見る</a></small>
+    </div>
+    <hr>
+    <h5>開催予定の新歓</h5>
+    
+    <% if @memos.count >= 1 %>
+        <div class="row">
+            <%@memos.each do |memo|%>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header bg-info ">
+                        <% memo_category_id =memo.category_id%>
+                        <% memo_user_id =memo.user_id%>
+                        <h5 class="card-title text-white float-left"><%=memo.title%></h5>
+                        <% if user_signed_in? %>
+                            <% if memo.user.id == current_user.id %>
+                                <div class ="buttons ">
+                                    <a href ="/memos/<%=memo.id%>" data-method ="delete"><span class ="fa fa-trash text-white"></span></a> 
+                                    <span class ="text-white"> ... </span>
+                                    <a href ="/memos/<%=memo.id%>/edit"> <span class ="fa fa-edit text-white"></span></a>
+                                </div>
+                            <%end%>
                         <%end%>
-                    <%end%>
-                </div>
-                <div class="card-body">
-                    <p class="card-title">日にち: <%=memo.day%></p>
-                    <a href ="/categories/<%=memo_category_id%>" ><%= memo.category.name%></a>
-                    <p class="card-title">時間: <%=memo.times%></p>
-                    <p class="card-text">内容: <%=memo.body%></p>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><p class="card-title">サークル: <ins><a href ="/users/<%=memo_user_id%>" ><%= memo.user.name%></a></ins></p></li>
+                            <li><p class="card-title">日にち: <%=memo.day%></p></li> 
+                            <li><p class="card-title">カテゴリ: <ins><a href ="/categories/<%=memo_category_id%>" ><%= memo.category.name%></a></p></ins></li> 
+                            <li><p class="card-title">時間: <%=memo.times%></p></li> 
+                            <li><p class="card-title">内容: <%=memo.body%></p></li> 
+                            <li><p class="card-title">集合場所: <%=memo.place%></p></li> 
+                        </ul>
+                    </div>
                 </div>
             </div>
+        <% end %>
         </div>
-    <% end %>
-    </div>
-<% else%>
-    <p>新歓情報がありません。新しく新歓情報を追加しますか？</p>
-    <a href ="/new">新歓情報を追加する。（新入生は不可）</a>
-<%end%>
-<hr>
-<h4>サークル情報</h4>
-<hr>
-<% if user_signed_in? && @user.id == current_user.id %>
-    <a href ="/users/edit">プロフィールを編集する場合はこちら</a>
-<%end%>
-<table>
-    <thead>
-        <tr>
-            <th>サークル名</th>
-            <th data-label="サークル名" class="txt"><span><%=@user.name%></span></th>
-            <!--<td data-label="価格" class="price">¥3,000</td>-->
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th>何サークル？</th>
-            <td data-label="何サークル？" class="txt"><span><%=@user.kind%></span></td>
-            <!--<td data-label="価格"class="price">¥4,000</td>-->
-        </tr>
-        <tr>
-            <th>活動内容・ 特徴</th>
-            <td data-label="活動内容・ 特徴" class="txt"><span><%=@user.content%></span></td>
-            <!--<td data-label="価格"class="price">¥4,000</td>-->
-        </tr>
-        <tr>
-            <th>活動頻度</th>
-            <td data-label="活動頻度" class="txt"><span><%=@user.often%></span></td>
-            <!--<td data-label="価格"class="price">¥4,000</td>-->
-        </tr>
-        <tr>
-            <th>規模  [人数]</th>
-            <td data-label="規模  [人数]" class="txt"><span><%=@user.numbers%></span></td>
-            <!--<td data-label="価格"class="price">¥4,000</td>-->
-        </tr>
-        <tr>
-            <th>男女比  [男:女]</th>
-            <td data-label="男女比  [男:女]" class="txt"><span><%=@user.gender%></span></td>
-            <!--<td data-label="価格"class="price">¥4,000</td>-->
-        </tr>
-        <tr>
-            <th>飲みの頻度</th>
-            <td data-label="飲みの頻度" class="txt"><span><%=@user.alcohol%></span></td>
-            <!--<td data-label="価格"class="price">¥4,000</td>-->
-        </tr>
-        <tr>
-            <th>部費  [円]</th>
-            <td data-label="部費  [円]" class="txt"><span><%=@user.expenses%></span></td>
-            <!--<td data-label="価格"class="price">¥4,000</td>-->
-        </tr>
-        <tr>
-            <th>部室の有無</th>
-            <td data-label="部室の有無" class="txt"><span><%=@user.room%></span></td>
-            <!--<td data-label="価格"class="price">¥4,000</td>-->
-        </tr>
-        <tr>
-            <th>学祭に出店</th>
-            <td data-label="学祭に出店" class="txt"><span><%=@user.fes%></span></td>
-            <!--<td data-label="価格"class="price">¥4,000</td>-->
-        </tr>
-        <tr>
-            <th>サークルのガチ度 (MAX 10点)</th>
-            <td data-label="サークルのガチ度 (MAX 10点)" class="txt"><span><%=@user.gachi%></span></td>
-            <!--<td data-label="価格"class="price">¥4,000</td>-->
-        </tr>
-        <tr>
-            <th>パリピ度  (MAX 10点)</th>
-            <td data-label="パリピ度  (MAX 10点)" class="txt"><span><%=@user.party%></span></td>
-            <!--<td data-label="価格"class="price">¥4,000</td>-->
-        </tr>
-    </tbody>
-</table>   
-<hr>
-<h4> SNSアカウント</h4>
-<hr>
-
-<a href ="" data-method ="delete">Twitter<span class ="fab fa-twitter"></span></a> 
-<a href ="">Instagram <span class ="fa fa-edit text-white"></span></a><br>
-<br>
+    <% else%>
+        <p>新歓情報がありません。新しく新歓情報を追加しますか？</p>
+        <a href ="/new">新歓情報を追加する。（新入生は不可）</a>
+    <%end%>
+    <hr>
+    <h4>サークル情報</h4>
+    <hr>
+    <% if user_signed_in? && @user.id == current_user.id %>
+        <br>
+        <div class ="text-right">
+            <small><a href ="/users/edit"  >マイページを編集する場合はこちら</a></small>
+        </div>
+    
+        <hr>
+    <%end%>
+    
+    <table class="table table-borderless">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">サークル名</th>
+                <th scope="col"><span><%=@user.name%></span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Twitter</th>
+                <td><a href ="https://twitter.com/<%=@user.twitter%>" data-method ="delete"><span class ="fab fa-twitter"></span>  Twitterへ</a></td>
+                <!--<td data-label="価格"class="price">¥4,000</td>-->
+            </tr>
+            <tr>
+                <th scope="row">Instagram</th>
+                <td><a href ="https://www.instagram.com/<%=@user.instagram%>/"><span class ="fab fa-instagram"></span>  instagramへ</a></td>
+                <!--<td data-label="価格"class="price">¥4,000</td>-->
+            </tr>
+            <tr>
+                <th scope="row">何サークル？</th>
+                <td><span><%=@user.kind%></span></td>
+                <!--<td data-label="価格"class="price">¥4,000</td>-->
+            </tr>
+            <tr>
+                <th scope="row">活動内容・ 特徴</th>
+                <td><span><%=@user.content%></span></td>
+                <!--<td data-label="価格"class="price">¥4,000</td>-->
+            </tr>
+            <tr>
+                <th scope="row">活動頻度</th>
+                <td><span><%=@user.often%></span></td>
+                <!--<td data-label="価格"class="price">¥4,000</td>-->
+            </tr>
+            <tr>
+                <th scope="row">規模  [人数]</th>
+                <td ><span><%=@user.numbers%></span></td>
+                <!--<td data-label="価格"class="price">¥4,000</td>-->
+            </tr>
+            <tr>
+                <th scope="row">男女比  [男:女]</th>
+                <td><span><%=@user.gender%></span></td>
+                <!--<td data-label="価格"class="price">¥4,000</td>-->
+            </tr>
+            <tr>
+                <th scope="row">飲みの頻度</th>
+                <td><span><%=@user.alcohol%></span></td>
+                <!--<td data-label="価格"class="price">¥4,000</td>-->
+            </tr>
+            <tr>
+                <th scope="row">部費  [円]</th>
+                <td><span><%=@user.expenses%></span></td>
+                <!--<td data-label="価格"class="price">¥4,000</td>-->
+            </tr>
+            <tr>
+                <th scope="row">部室の有無</th>
+                <td><span><%=@user.room%></span></td>
+                <!--<td data-label="価格"class="price">¥4,000</td>-->
+            </tr>
+            <tr>
+                <th scope="row">学祭に出店</th>
+                <td><span><%=@user.fes%></span></td>
+                <!--<td data-label="価格"class="price">¥4,000</td>-->
+            </tr>
+            <tr>
+                <th scope="row">サークルのガチ度 (MAX 10点)</th>
+                <td><span><%=@user.gachi%></span></td>
+                <!--<td data-label="価格"class="price">¥4,000</td>-->
+            </tr>
+            <tr>
+                <th scope="row">パリピ度  (MAX 10点)</th>
+                <td><span><%=@user.party%></span></td>
+                <!--<td data-label="価格"class="price">¥4,000</td>-->
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+</div>
