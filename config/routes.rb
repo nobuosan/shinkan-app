@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   patch '/memos/:id' ,to:'memos#update'
   get '/categories/:id',to:'categories#show'
   get '/users/:id',to:'users#show'
+  
 end

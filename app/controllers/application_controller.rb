@@ -5,12 +5,13 @@ class ApplicationController < ActionController::Base
     def get_category
        @categories = Category.all 
        @users = User.all
+       
     end
       
       protected
     
     def configure_permitted_parameters
-        added_attrs = [ :name, :email, :password, :password_confirmation　]
+        added_attrs = [ :name, :email, :password, :password_confirmation,:kind,:often,:content, :gender,:alcohol,:expenses,:room,:fes, :gachi,:party,:numbers]
         devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
         devise_parameter_sanitizer.permit :account_update, keys: added_attrs
         devise_parameter_sanitizer.permit :sign_in, keys: added_attrs
