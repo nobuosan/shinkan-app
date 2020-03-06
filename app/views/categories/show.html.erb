@@ -2,8 +2,8 @@
     <hr>
     <h3><%=@category.name%>の新歓情報</h3>
     <hr>
-    <div class = "col-lg-6">
-        <a href="/memos/index" class="text-right">全ての新歓情報を見る</a>
+    <div class = "col-lg-6 text-right">
+        <a href="/memos/index" >全ての新歓情報を見る</a>
     </div>
     <% if @memos.count >= 1 %>
         <div class="row">
@@ -42,8 +42,24 @@
         <% end %>
         </div>
     <% else%>
-        <p>新歓情報がありません。新しく新歓情報を追加しますか？</p>
-        <a href ="/new">新歓情報を追加する。（新入生は不可）</a>
+        <hr>
+        <p>新歓情報がありません。</p>
+        <a href ="/new">新歓情報の追加はこちらから。<br>（新入生は不可）</a>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
     <%end%>
     <br>
     <br>

@@ -39,4 +39,9 @@ class MemosController < ApplicationController
     memo.save
     redirect_to "/memos/index"
   end
+  def destroy_user
+    memo=Memo.find(params["id"])
+    memo.destroy
+    redirect_to "/users/memo.id"    
+  end
 end
