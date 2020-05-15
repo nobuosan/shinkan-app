@@ -21,4 +21,6 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+
+鹿児島大学向けの新入生歓迎会サイトです
+
