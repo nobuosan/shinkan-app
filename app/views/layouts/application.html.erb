@@ -4,93 +4,91 @@
       <title>新歓まとめ APP</title>
       <%= csrf_meta_tags %>
       <%= csp_meta_tag %>
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
       <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <!-- Navigation -->
-    <div class="navbar navbar-expand-md navbar-light sticky-top">
-    	<div class="container-fluid">
-    		<a class="navbar-brand" href="/">新歓まとめサイト</a>
-    		<button class="navbar-toggler" type ="button" data-toggle ="collapse" data-target="#navbarResponsive">
-    			<span class="navbar-toggler-icon"></span>
-    		</button>
-    		<div class="collapse navbar-collapse" id ="navbarResponsive">
-    			<ul class="navbar-nav ml-auto">
-    			      <div class="dropdown-divider"></div>
-    			      <% if user_signed_in? %>
-    			        <li class="nav-item">
-    			          <a href="/new" class="nav-link">新歓情報を追加</a>
-    			        </li>
-    			        <li class="nav-item">
-    			          <a href="/memos/index" class="nav-link">新歓情報を見る</a>
-    			        </li>
-    			      <%else%>
-    			        <a href="/memos/index" class="nav-link">新歓情報を見る</a>
-    			      <% end %>
-                <div class="dropdown-divider"></div>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">ジャンル</a>
-                  <div class="dropdown-menu">
-                    <% @categories.each do |category|%>
-                      <p> <a href="/categories/<%=category.id%>" class="dropdown-item"><%=category.name%></a></p>
-                    <% end%>
-                  </div>
-                </li>
-                <div class="dropdown-divider"></div>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">アカウント</a>
-                  <div class="dropdown-menu">
-                    <% if user_signed_in? %>
-                      <p><a href="/users/<%=current_user.id %>" class = "dropdown-item">マイページを見る</a></p>
-                      <p><%= link_to 'マイページを編集', edit_user_registration_path, class: 'dropdown-item' %></p>
-                      <p><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item' %></p>
-                      <p><a href="/new" class="dropdown-item">新歓情報を追加</a></p>
-                    <% else %>
-                      <%= link_to "新規登録", new_user_registration_path, class: 'dropdown-item' %>
-                      <%= link_to "ログイン", new_user_session_path, class: 'dropdown-item' %>
-                    <% end %>
-                  </div>
-                </li>
-          </ul>
-    		</div>
-    	</div>
+    <div class = "container-fluid">
+      <div class="navbar navbar-expand-md navbar-light sticky-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">新歓まとめサイト</a>
+          <button class="navbar-toggler" type ="button" data-toggle ="collapse" data-target="#navbarResponsive">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id ="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                  <div class="dropdown-divider"></div>
+                  <% if user_signed_in? %>
+                    <li class="nav-item">
+                      <a href="/new" class="nav-link">新歓情報を追加</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/memos/index" class="nav-link">新歓情報を見る</a>
+                    </li>
+                  <%else%>
+                    <a href="/memos/index" class="nav-link">新歓情報を見る</a>
+                  <% end %>
+                  <div class="dropdown-divider"></div>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">ジャンル</a>
+                    <div class="dropdown-menu">
+                      <% @categories.each do |category|%>
+                        <p> <a href="/categories/<%=category.id%>" class="dropdown-item"><%=category.name%></a></p>
+                      <% end%>
+                    </div>
+                  </li>
+                  <div class="dropdown-divider"></div>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">アカウント</a>
+                    <div class="dropdown-menu">
+                      <% if user_signed_in? %>
+                        <p><a href="/users/<%=current_user.id %>" class = "dropdown-item">マイページを見る</a></p>
+                        <p><%= link_to 'マイページを編集', edit_user_registration_path, class: 'dropdown-item' %></p>
+                        <p><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item' %></p>
+                        <p><a href="/new" class="dropdown-item">新歓情報を追加</a></p>
+                      <% else %>
+                        <%= link_to "新規登録", new_user_registration_path, class: 'dropdown-item' %>
+                        <%= link_to "ログイン", new_user_session_path, class: 'dropdown-item' %>
+                      <% end %>
+                    </div>
+                  </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="container">
       <%= render 'shared/flash_messages' %>
       <%= yield %>
     </div>
-  </body>
-  
-
-
   <!--- Footer -->
-  <footer>
-  	<div>
-  		<div class="row text-center">
-  			<div class="col-md-6">
-  				<%= image_tag("HP_picture.png")%>
-  				<hr class="light">
-  				<p>団体名：make one</p>
-  				<p>since：November/2019</p>
-  				<p>連絡先：youth.tube.kagoshima@gmail.com</p>
-  			</div>
-  			<div class="col-md-6">
-  				<hr class="light">
-  				<h5>Our vision</h5>
-  				<hr class="light">
-  				<p>私たちのビジョンは<br>鹿児島の若者の0→1を実現することです。</p>
-  			</div>
-  			<div class="col-12 footer-bottom">
-  				<hr class="light-100">
-  				<h5>&copy; make one</h5>
-  			</div>
-  		</div>
-  	</div>
-  </footer>
+    <div class = "container-fluid">
+      <footer>
+        <div>
+          <div class="row text-center">
+            <div class="col-md-6">
+              <%= image_tag("HP_picture.png")%>
+              <hr class="light">
+              <p>団体名：make one</p>
+              <p>since：November/2019</p>
+              <p>連絡先：youth.tube.kagoshima@gmail.com</p>
+            </div>
+            <div class="col-md-6">
+              <hr class="light">
+              <h5>Our vision</h5>
+              <hr class="light">
+              <p>私たちのビジョンは<br>鹿児島の若者の0→1を実現することです。</p>
+            </div>
+            <div class="col-12 footer-bottom">
+              <hr class="light-100">
+              <h5>&copy; make one</h5>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
 </html>
-
-
-
