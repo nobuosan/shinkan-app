@@ -1,0 +1,63 @@
+<br>
+<br>
+<h1>登録済みのユーザー一覧</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>名前</th>
+      <th>登録日</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+    	<td><%= user.name %></td>
+    	<td><%= user.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<br>
+
+<h1>Memo一覧</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>タイトル</th>
+      <th>内容</th>
+      <th>カテゴリ</th>
+      <th>作成日</th>
+      <th>最終編集日</th>
+      <th>作成者</th>
+      <th>開催日</th>
+      <th>開催時間</th>
+      <th>場所</th>
+      <th>削除</th>
+      <th>編集</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @memos.each do |memo| %>
+      <tr>
+        <td><%= memo.id %></td>
+    	  <td><%= memo.title %></td>
+    	  <td><%= memo.body %></td>
+    	  <td><%= memo.category.name%></td>
+    	  <td><%= memo.created_at %></td>
+    	  <td><%= memo.updated_at %></td>
+    	  <td><%= memo.user.name%></td>
+    	  <td><%= memo.day%></td>
+    	  <td><%= memo.times%></td>
+    	  <td><%= memo.place%></td>
+    	  <td><a href ="/memos/<%=memo.id%>" data-method ="delete">削除</a></td>
+        <td><a href ="/memos/<%=memo.id%>/edit"> 編集</a></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<br>
